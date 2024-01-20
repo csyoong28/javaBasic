@@ -22,9 +22,9 @@ public class T2ExceptionHandling {
             throw new RuntimeException("Example Exception");
         } catch (Exception e) {
             // Log the exception stack trace
-            logger.error("Exception occurred with loggerFactory", e);
-            log.error("Exception occurred with @slf4j", e);
-            e.printStackTrace();
+            logger.error("Exception occurred with loggerFactory", e); // will be at log file
+            log.error("Exception occurred with @slf4j", e);  // will be at log file
+            e.printStackTrace();  //will not be at log file
         }
 
     }
