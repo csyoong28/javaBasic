@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Test2VariousApi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestCalculator1 Coverage Results, TestCalculator1 Coverage Results</a> &gt; <a href="index.source.html" class="el_package">com.soonyoong.junit</a> &gt; <span class="el_source">Test2VariousApi.java</span></div><h1>Test2VariousApi.java</h1><pre class="source lang-java linenums">package com.soonyoong.junit;
+
+import org.junit.jupiter.api.*;
+
+import java.util.*;
+
+import static java.util.stream.Collectors.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.util.Sets.newHashSet;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toSet;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Sets.newHashSet;
+<span class="nc" id="L23">public class Test2VariousApi {</span>
+    @BeforeAll
+    public static void setUpBeforeClass() throws Exception {
+<span class="nc" id="L26">        System.out.println(&quot;before class&quot;);</span>
+<span class="nc" id="L27">    }</span>
+    @BeforeEach
+    public void setUp() throws Exception {
+<span class="nc" id="L30">        System.out.println(&quot;before&quot;);</span>
+<span class="nc" id="L31">    }</span>
+
+    @Test
+    public void createStream_whenFindAnyResultIsPresent_thenCorrect() {
+<span class="nc" id="L35">        List&lt;String&gt; list = Arrays.asList(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;);</span>
+<span class="nc" id="L36">        Optional&lt;String&gt; result = list.stream().findAny();</span>
+<span class="nc" id="L37">        assertTrue(result.isPresent());</span>
+<span class="nc" id="L38">        assertThat(result.get(), anyOf(is(&quot;A&quot;), is(&quot;B&quot;), is(&quot;C&quot;), is(&quot;D&quot;)));</span>
+<span class="nc" id="L39">    }</span>
+
+    @Test
+    public void testContainsEntry() {
+<span class="nc" id="L43">        List&lt;String&gt; givenList = Arrays.asList(&quot;a&quot;, &quot;bb&quot;, &quot;ccc&quot;, &quot;dd&quot;);</span>
+<span class="nc" id="L44">        Map&lt;Integer, Set&lt;String&gt;&gt; result = givenList.stream().collect(groupingBy(String::length, toSet()));</span>
+<span class="nc" id="L45">        assertThat(result).containsEntry(1, newHashSet(List.of(&quot;a&quot;)))</span>
+<span class="nc" id="L46">                .containsEntry(2, newHashSet(List.of(&quot;bb&quot;, &quot;dd&quot;)))</span>
+<span class="nc" id="L47">                .containsEntry(3, newHashSet(List.of(&quot;ccc&quot;)));</span>
+<span class="nc" id="L48">    }</span>
+
+    @Test
+    public void testAssertThatThrownBy() {
+<span class="nc" id="L52">        List&lt;String&gt; givenList = Arrays.asList(&quot;a&quot;, &quot;bb&quot;, &quot;ccc&quot;, &quot;dd&quot;);</span>
+<span class="nc" id="L53">        List&lt;String&gt; result = givenList.stream().collect(toUnmodifiableList());</span>
+<span class="nc" id="L54">        assertThatThrownBy(() -&gt; result.add(&quot;foo&quot;)).isInstanceOf(UnsupportedOperationException.class);</span>
+<span class="nc" id="L55">    }</span>
+
+    @AfterEach
+    public void tearDown() throws Exception {
+<span class="nc" id="L59">        System.out.println(&quot;after&quot;);</span>
+<span class="nc" id="L60">    }</span>
+
+    @AfterAll
+    public static void tearDownAfterClass() throws Exception {
+<span class="nc" id="L64">        System.out.println(&quot;after class&quot;);</span>
+<span class="nc" id="L65">    }</span>
+
+    @Disabled
+    @Test
+    public void shouldBeIgnored() {
+<span class="nc" id="L70">        System.out.println(&quot;huh, not ignored?!&quot;);     //@ignore is used when functionality is still under development, and the test should not be executed yet</span>
+<span class="nc" id="L71">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
