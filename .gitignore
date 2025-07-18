@@ -32,3 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 /logs/application.log
+/out/production/javaBasic/com/example/javabasic/*.class
+/out/production/javaBasic/com/example/javabasic/model/*.class
+*.class

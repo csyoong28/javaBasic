@@ -1,26 +1,26 @@
 package learn.threadLocal;
 
 //without threadLocal, the thread may retrieve another's thread result.
-public class MyDemo01 {
-
+public class MyDemo {
     private String content;
 
-    public String getContent() {
+    private String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    private void setContent(String content) {
         this.content = content;
     }
 
     public static void main(String[] args) {
-        MyDemo01 demo = new MyDemo01();
-        for (int i = 0; i < 5; i++) {
+        MyDemo demo = new MyDemo();
+        for (int i = 0; i < 20; i++) {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    demo.setContent(Thread.currentThread().getName() + " content");
-                    System.out.println(Thread.currentThread().getName() + "-->" + demo.getContent());
+                    demo.setContent(Thread.currentThread().getName() + "的数据");
+                    System.out.println("-----------------------");
+                    System.out.println(Thread.currentThread().getName() + "--->" + demo.getContent());
                 }
             });
             thread.setName("线程" + i);
@@ -28,3 +28,4 @@ public class MyDemo01 {
         }
     }
 }
+

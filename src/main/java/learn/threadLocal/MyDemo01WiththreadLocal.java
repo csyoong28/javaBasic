@@ -13,11 +13,12 @@ public class MyDemo01WiththreadLocal {
 
     public static void main(String[] args) {
         MyDemo01WiththreadLocal demo = new MyDemo01WiththreadLocal();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 20; i++) {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     demo.setContent(Thread.currentThread().getName() + " content");
+                    System.out.println("----------------");
                     System.out.println(Thread.currentThread().getName() + "-->" + demo.getContent());
                 }
             });
