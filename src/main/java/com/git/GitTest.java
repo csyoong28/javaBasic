@@ -5,5 +5,6 @@ public class GitTest {
         System.out.println("Hello, Git!");
         System.out.println("Second line added.");
         System.out.println("Third line added.");
+        System.out.println("Fourth line added.");
     }
 }
